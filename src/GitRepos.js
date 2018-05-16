@@ -4,20 +4,21 @@ import ReactDOM from "react-dom";
 class GitRepos extends Component {
   constructor(props) {
     super(props);
-    this.state = { MYURL: "" };
+    this.state = { result:[] };
     this.getgitdata = this.getgitdata.bind(this);
   }
 
   getgitdata() {
-    this.setState({
-      MYURL: "https://api.github.com/users/harmeet27/repos"
-    });
+    
+      const MYURL="https://api.github.com/users/harmeet27/repos"
+    fetch(MYURL).then(response => response.json())
+                .then (response => console.log(response));
   }
   render() {
     return (
       <div>
         <h1>Get Git Repos</h1>
-        <input type="button" onclick={this.getgitdata} />
+        <input type="button" onClick={this.getgitdata} value="get data" />
       </div>
     );
   }
